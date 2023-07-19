@@ -1,4 +1,5 @@
 // graphql application for project/task organization
+// many comments are relics of local storage
 const graphql = require('graphql');
 const {
   GraphQLObjectType,
@@ -61,6 +62,7 @@ const TaskType = new GraphQLObjectType({
       type: ProjectType,
       resolve(parent, args) {
         // return _.find(projects, { id: parent.projectId });
+        return Project.findById(parent.projectId);
       },
     },
   }),
@@ -78,6 +80,7 @@ const ProjectType = new GraphQLObjectType({
       type: new GraphQLList(TaskType),
       resolve(parent, args) {
         // return _.filter(tasks, { projectId: parent.id });
+        return Task.findById({ projectId: parent.id });
       },
     },
   }),
@@ -94,6 +97,7 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         // return _.find(tasks, { id: args.id });
+        return Task.findById(args.id);
       },
     },
     project: {
@@ -103,18 +107,21 @@ const RootQuery = new GraphQLObjectType({
       },
       resolve(parent, args) {
         // return _.find(projects, { id: args.id });
+        return Project.findById(args.id);
       },
     },
     tasks: {
       type: new GraphQLList(TaskType),
       resolve(parent, args) {
         // return tasks;
+        return Task.find({});
       },
     },
     projects: {
       type: new GraphQLList(ProjectType),
       resolve(parent, args) {
         // return projects;
+        return Project.find({});
       },
     },
   }),
