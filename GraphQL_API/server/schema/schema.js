@@ -57,7 +57,6 @@ const TaskType = new GraphQLObjectType({
     project: {
       type: ProjectType,
       resolve(parent, args) {
-        console.log(parent);
         return _.find(projects, { id: parent.projectId });
       },
     },
@@ -76,7 +75,6 @@ const ProjectType = new GraphQLObjectType({
       type: new GraphQLList(TaskType),
       resolve(parent, args) {
         // show tasks that match project
-        console.log(parent);
         return _.filter(tasks, { projectId: parent.id });
       },
     },
