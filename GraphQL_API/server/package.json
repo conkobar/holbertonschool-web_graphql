@@ -15,7 +15,9 @@
     "graphql": "^16.7.1",
     "lodash": "^4.17.21",
     "mongodb": "^5.7.0",
-    "mongoose": "^5.13.8"
+    "mongoose": "^5.13.8",
+    "react-apollo": "^3.1.5",
+    "apollo-boost": "^0.4.9"
   },
   "devDependencies": {
     "nodemon": "^2.0.7"
